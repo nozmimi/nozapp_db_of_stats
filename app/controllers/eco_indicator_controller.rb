@@ -1,6 +1,6 @@
 class EcoIndicatorController < ApplicationController
   def index
-    update_category_list("0003109741")
+    update_nea()
     @db_catlists = CategoryList.all
   end
   
@@ -8,24 +8,20 @@ class EcoIndicatorController < ApplicationController
     @db_catlists = CategoryList.all
   end
 
-  def test
-    get_api_url("0003109741")
-    redirect_to :action => "index"
-  end
-  
-  helper_method :test
+
 end
 
-  #（メモ）APIアドレスを作成するメソッド
-  def get_api_url(stats_data_id)
+# APIアドレスの作成（全共通）
+  def get_api_url(stats_id)
     api_url = "https://api.e-stat.go.jp/rest/2.1/app/json/getStatsData"
     api_appid = "bb86c86ee575b3adfa4930ee0f17a74de14e57e6"
-    @req_url = api_url +"?appId=" + api_appid +"&statsDataId=" + stats_data_id
+    @req_url = api_url +"?appId=" + api_appid +"&statsDataId=" + stats_id
     pp @req_url
   end
-  
-  def update_category_list(data_id)
-    get_api_url(data_id)
+
+# CategoryListの作成，更新（全共通）
+  def update_category_list(stats_id)
+    get_api_url(stats_id)
 
     # データの取得
     req_uri = URI.parse(@req_url)
@@ -51,4 +47,12 @@ end
       catlist.update_date = update_date
       catlist.save
     end
+  end
+
+#国民経済計算（ＧＤＰなど）
+  def update_nea
+    nea_id = ["0003109741","0003109766","0003109785","0003109786"] #国民経済計算(NationalEconomicAccounting)
+      nea_id.each do |id|
+        update_category_list(id)
+      end
   end
