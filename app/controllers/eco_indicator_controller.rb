@@ -58,7 +58,7 @@ end
 
   def update_nea
     #国民経済計算(NationalEconomicAccounting)のID
-    nea_id = ["0003109741","0003109766","0003109785","0003109786"]
+    nea_id = ["0003109741","0003109766","0003109785","0003109786","0003109767"]
     
     nea_id.each do |id|
       update_statistics_list(id)
@@ -77,11 +77,12 @@ end
             case obj[:@id]
               when "time" then
                 data_time = obj[:CLASS]
+                date_unit = data_time[:@name]
                 
                 data_time.each do |time|
                   datalist = db_datelists.find_by(date_code:time[:@code])
                   if  datalist == nil
-                    db_datelists.create(date_code:time[:@code], date_name:time[:@name])
+                    db_datelists.create(date_code:time[:@code], date_name:time[:@name], date_unit:date_unit)
                   end
                 end
               when "cat01" then
