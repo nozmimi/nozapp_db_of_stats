@@ -16,6 +16,17 @@
 <% end %>
 <br>
 <hr>
+<h2>catリスト</h2>
+<% @db_catlists.each do |data| %>
+<%= data.category_code %>
+<br>
+<%= data.category_name %>
+<br>
+<hr>
+<% end %>
+
+<br>
+<hr>
 <h2>年月リスト</h2>
 <% @db_datelists.each do |data| %>
 <%= data.date_code %>

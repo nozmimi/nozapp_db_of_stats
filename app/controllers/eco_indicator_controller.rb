@@ -8,6 +8,7 @@ class EcoIndicatorController < ApplicationController
   def show
     @db_statlists = StatisticsList.all
     @db_datelists = DateList.all
+    @db_catlists = CategoryList.all
   end
 
 
@@ -68,6 +69,7 @@ end
       
       if statlist.last_date == nil or statlist.last_date != statlist.update_date
           db_datelists = DateList.all
+          db_catlists = CategoryList.all
           
           data_value = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:DATA_INF][:VALUE]
           data_classobj = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:CLASS_INF][:CLASS_OBJ]
@@ -77,23 +79,32 @@ end
             case obj[:@id]
               when "time" then
                 data_time = obj[:CLASS]
-                date_unit = data_time[:@name]
+                date_unit = obj[:@name]
                 
                 data_time.each do |time|
-                  datalist = db_datelists.find_by(date_code:time[:@code])
-                  if  datalist == nil
-                    db_datelists.create(date_code:time[:@code], date_name:time[:@name], date_unit:date_unit)
+                  if  db_datelists.find_by(date_code:time[:@code]) == nil
+                      db_datelists.create(
+                        date_code:time[:@code],
+                        date_name:time[:@name],
+                        date_unit:date_unit
+                      )
                   end
                 end
               when "cat01" then
                 data_cat01 = obj[:CLASS]
+                
+                data_cat01.each do |cat01|
+                  if db_catlists.find_by(category_code:cat01[:@code]) == nil
+                     db_catlists.create(
+                         category_code:cat01[:@code],
+                         category_name:cat01[:@name]
+                      )
+                  end
+                end
+                
             end
           end
-          
-          
-          
-          
-          
+
       end
 
     end
