@@ -1,0 +1,2 @@
+class DateList < ApplicationRecord
+end

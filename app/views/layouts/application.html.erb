@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NozAppEi</title>
+    <title>（仮）経済指標ＤＢ.noz</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= include_gon %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-dark bg-blue">
+      <a class=navbar-brand nav-a" href="index">
+        <img src="/top_icon.png" class="d-inline-block align-top nav-img" alt="top-icon">
+      </a>
+      <a href="show">テスト用</a>
+    </nav>
+    
+      <%= button_to "新規作成", :action => "show" %>
+      <%= button_to "作成",  {:action => "ei_update"}, {:remote => true} %>    
+      
+      
+    <div class="container">
+
+    
+      <%= yield %>
+    </div>
   </body>
 </html>
