@@ -1,2 +1,14 @@
-<h1>EcoIndicator#show</h1>
-<p>Find me in app/views/eco_indicator/index.html.erb</p>
+<h2>カテゴリーリスト</h2>
+<% @db_catlists.each do |data| %>
+<%= data.category_code %>
+<br>
+<%= data.category_name %>
+<br>
+<%= data.table_name %>
+<br>
+<%= data.update_date %>
+<br>
+<%= data.last_date %>
+<br>
+<hr>
+<% end %>

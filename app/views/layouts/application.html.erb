@@ -18,6 +18,7 @@
       <a href="show">テスト用</a>
     </nav>
     
+      <%= button_to "ボタン", {controller: 'eco_indicator', action: 'test'}, {method: :get} %>
       <%= button_to "新規作成", :action => "show" %>
       <%= button_to "作成",  {:action => "show"}, {:remote => true} %>    
       
