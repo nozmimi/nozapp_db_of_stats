@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category_code: MyString
+  category_name: MyString
+  table_name: MyString
+  update_date: MyString
+  last_date: MyString
+
+two:
+  category_code: MyString
+  category_name: MyString
+  table_name: MyString
+  update_date: MyString
+  last_date: MyString
