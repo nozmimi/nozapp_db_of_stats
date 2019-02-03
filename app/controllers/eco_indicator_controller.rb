@@ -1,58 +1,99 @@
 class EcoIndicatorController < ApplicationController
   def index
     update_nea()
-    @db_catlists = CategoryList.all
+    @db_statlists = StatisticsList.all
+    
   end
   
   def show
-    @db_catlists = CategoryList.all
+    @db_statlists = StatisticsList.all
+    @db_datelists = DateList.all
   end
 
 
 end
 
-# APIアドレスの作成（全共通）
-  def get_api_url(stats_id)
+  def update_statistics_list(stats_id)
+    
+    # APIアドレスの作成してJsonデータを取得し、parseしてグローバル変数へ代入
     api_url = "https://api.e-stat.go.jp/rest/2.1/app/json/getStatsData"
     api_appid = "bb86c86ee575b3adfa4930ee0f17a74de14e57e6"
     @req_url = api_url +"?appId=" + api_appid +"&statsDataId=" + stats_id
     pp @req_url
-  end
-
-# CategoryListの作成，更新（全共通）
-  def update_category_list(stats_id)
-    get_api_url(stats_id)
 
     # データの取得
     req_uri = URI.parse(@req_url)
     data_json = Net::HTTP.get(req_uri)
-    data_all = JSON.parse(data_json, symbolize_names: true)
+    @data_all = JSON.parse(data_json, symbolize_names: true)    
 
-    update_date = data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:UPDATED_DATE]
-    category_code = data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:@id]
-    category_name = data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:"$"]
-    table_name = data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:TITLE] 
+    stat_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:@code]
+    stat_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:"$"]
+    table_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:@id]
+    table_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:TITLE]
+    update_date = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:UPDATED_DATE]
     
-    db_catlists = CategoryList.all
-    catlist = db_catlists.find_by(category_code:category_code)
+    db_statlists = StatisticsList.all
+    statlist = db_statlists.find_by(table_code:table_code)
 
-    if db_catlists.count == 0 or catlist == nil
-      puts "test"
-      db_catlists.create(category_code:category_code, category_name:category_name, table_name:table_name, update_date:update_date)
+    if statlist == nil
+      db_statlists.create(
+        stat_code:stat_code,
+        stat_name:stat_name,
+        table_code:table_code,
+        table_name:table_name,
+        update_date:update_date
+        )
     else
-      catlist.category_code = category_code
-      catlist.category_name = category_name
-      catlist.table_name = table_name
-      catlist.last_date = catlist.update_date
-      catlist.update_date = update_date
-      catlist.save
+      statlist.stat_code = stat_code
+      statlist.stat_name = stat_name
+      statlist.table_code = table_code      
+      statlist.table_name = table_name
+      statlist.last_date = statlist.update_date
+      statlist.update_date = update_date
+      statlist.save
     end
   end
 
-#国民経済計算（ＧＤＰなど）
+
+
   def update_nea
-    nea_id = ["0003109741","0003109766","0003109785","0003109786"] #国民経済計算(NationalEconomicAccounting)
-      nea_id.each do |id|
-        update_category_list(id)
+    #国民経済計算(NationalEconomicAccounting)のID
+    nea_id = ["0003109741","0003109766","0003109785","0003109786"]
+    
+    nea_id.each do |id|
+      update_statistics_list(id)
+      
+      db_statlists = StatisticsList.all
+        statlist = db_statlists.find_by(table_code:id)
+      
+      if statlist.last_date == nil or statlist.last_date != statlist.update_date
+          db_datelists = DateList.all
+          
+          data_value = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:DATA_INF][:VALUE]
+          data_classobj = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:CLASS_INF][:CLASS_OBJ]
+          
+          
+          data_classobj.each do |obj|
+            case obj[:@id]
+              when "time" then
+                data_time = obj[:CLASS]
+                
+                data_time.each do |time|
+                  datalist = db_datelists.find_by(date_code:time[:@code])
+                  if  datalist == nil
+                    db_datelists.create(date_code:time[:@code], date_name:time[:@name])
+                  end
+                end
+              when "cat01" then
+                data_cat01 = obj[:CLASS]
+            end
+          end
+          
+          
+          
+          
+          
       end
+
+    end
   end

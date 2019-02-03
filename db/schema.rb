@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_081554) do
+ActiveRecord::Schema.define(version: 2019_02_03_155202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,9 +18,6 @@ ActiveRecord::Schema.define(version: 2019_02_03_081554) do
   create_table "category_lists", force: :cascade do |t|
     t.string "category_code"
     t.string "category_name"
-    t.string "table_name"
-    t.string "update_date"
-    t.string "last_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,6 +26,17 @@ ActiveRecord::Schema.define(version: 2019_02_03_081554) do
     t.string "date_code"
     t.string "date_name"
     t.string "date_unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "statistics_lists", force: :cascade do |t|
+    t.string "stat_code"
+    t.string "stat_name"
+    t.string "table_code"
+    t.string "table_name"
+    t.string "update_date"
+    t.string "last_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
