@@ -1,0 +1,2 @@
+class NominalNationalEconomicAccounting < ApplicationRecord
+end

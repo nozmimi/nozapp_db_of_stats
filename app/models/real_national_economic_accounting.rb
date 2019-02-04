@@ -1,0 +1,2 @@
+class RealNationalEconomicAccounting < ApplicationRecord
+end

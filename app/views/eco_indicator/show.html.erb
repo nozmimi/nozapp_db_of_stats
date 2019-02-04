@@ -15,13 +15,28 @@
 <hr>
 <% end %>
 <br>
-<hr>
+
+
 <h2>catリスト</h2>
 <% @db_catlists.each do |data| %>
 <%= data.category_code %>
 <br>
 <%= data.category_name %>
 <br>
+<hr>
+<% end %>
+<hr>
+
+<h2>data</h2>
+<% @db_nea_data.each do |data| %>
+    <%= data.date_code %>
+    <%= @db_datelists.find_by(date_code:data.date_code).date_name %>
+    <%= data.category_code %>
+    <%= @db_catlists.find_by(category_code:data.category_code).category_name %>
+    <%= data.data %>
+    <%= data.data_unit %>
+    <%= data.update_date %>
+    <br>
 <hr>
 <% end %>
 

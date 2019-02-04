@@ -1,6 +1,6 @@
 class EcoIndicatorController < ApplicationController
   def index
-    update_nea()
+    update_nea(NominalNationalEconomicAccounting.all,["0003109741","0003109786","0003109742"])
     @db_statlists = StatisticsList.all
     
   end
@@ -9,10 +9,11 @@ class EcoIndicatorController < ApplicationController
     @db_statlists = StatisticsList.all
     @db_datelists = DateList.all
     @db_catlists = CategoryList.all
+    @db_nea_data = NominalNationalEconomicAccounting.all
   end
 
-
 end
+
 
   def update_statistics_list(stats_id)
     
@@ -31,7 +32,7 @@ end
     stat_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:"$"]
     table_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:@id]
     table_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:TITLE]
-    update_date = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:UPDATED_DATE]
+    @update_date = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:UPDATED_DATE]
     
     db_statlists = StatisticsList.all
     statlist = db_statlists.find_by(table_code:table_code)
@@ -42,7 +43,7 @@ end
         stat_name:stat_name,
         table_code:table_code,
         table_name:table_name,
-        update_date:update_date
+        update_date:@update_date
         )
     else
       statlist.stat_code = stat_code
@@ -50,16 +51,15 @@ end
       statlist.table_code = table_code      
       statlist.table_name = table_name
       statlist.last_date = statlist.update_date
-      statlist.update_date = update_date
+      statlist.update_date = @update_date
       statlist.save
     end
   end
 
 
 
-  def update_nea
+  def update_nea(db_datas,nea_id)
     #国民経済計算(NationalEconomicAccounting)のID
-    nea_id = ["0003109741","0003109766","0003109785","0003109786","0003109767"]
     
     nea_id.each do |id|
       update_statistics_list(id)
@@ -68,13 +68,13 @@ end
         statlist = db_statlists.find_by(table_code:id)
       
       if statlist.last_date == nil or statlist.last_date != statlist.update_date
-          db_datelists = DateList.all
-          db_catlists = CategoryList.all
-          
+
           data_value = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:DATA_INF][:VALUE]
           data_classobj = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:CLASS_INF][:CLASS_OBJ]
-          
-          
+
+          db_datelists = DateList.all
+          db_catlists = CategoryList.all
+
           data_classobj.each do |obj|
             case obj[:@id]
               when "time" then
@@ -101,10 +101,18 @@ end
                       )
                   end
                 end
-                
             end
           end
-
+          
+          data_value.each do |data|
+            db_datas.create(
+            date_code:data[:@time],            
+            category_code:data[:@cat01],
+            data:data[:"$"],
+            data_unit:data[:@unit],
+            update_date:@update_date
+              )
+          end
       end
 
     end
