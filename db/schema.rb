@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_133727) do
+ActiveRecord::Schema.define(version: 2019_02_04_153341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_133727) do
   end
 
   create_table "nominal_national_economic_accountings", force: :cascade do |t|
+    t.string "table_code"
     t.string "date_code"
     t.string "category_code"
     t.integer "data"
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_133727) do
   end
 
   create_table "real_national_economic_accountings", force: :cascade do |t|
+    t.string "table_code"
     t.string "date_code"
     t.string "category_code"
     t.integer "data"

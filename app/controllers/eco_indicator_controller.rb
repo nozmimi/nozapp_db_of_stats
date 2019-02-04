@@ -1,8 +1,8 @@
 class EcoIndicatorController < ApplicationController
+
   def index
-    update_nea(NominalNationalEconomicAccounting.all,["0003109741","0003109786","0003109742"])
     @db_statlists = StatisticsList.all
-    
+  
   end
   
   def show
@@ -11,6 +11,23 @@ class EcoIndicatorController < ApplicationController
     @db_catlists = CategoryList.all
     @db_nea_data = NominalNationalEconomicAccounting.all
   end
+
+  def nea_data
+    @db_stat = StatisticsList.all
+    @db_date = DateList.all
+    @db_cat = CategoryList.all
+    @db_data = NominalNationalEconomicAccounting.all
+  end
+
+def update_data
+    #国民経済計算（名目）
+    update_nea(NominalNationalEconomicAccounting.all,["0003109741","0003109786","0003109742"])
+    
+    #国民経済計算（実質）
+    update_nea(RealNationalEconomicAccounting.all,["0003109766","0003109751","0003109767"])
+    
+    redirect_to :action => "index"
+end
 
 end
 
@@ -28,28 +45,28 @@ end
     data_json = Net::HTTP.get(req_uri)
     @data_all = JSON.parse(data_json, symbolize_names: true)    
 
-    stat_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:@code]
-    stat_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:"$"]
-    table_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:@id]
-    table_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:TITLE]
+    @stat_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:@code]
+    @stat_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:"$"]
+    @table_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:@id]
+    @table_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:TITLE]
     @update_date = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:UPDATED_DATE]
     
     db_statlists = StatisticsList.all
-    statlist = db_statlists.find_by(table_code:table_code)
+    statlist = db_statlists.find_by(table_code:@table_code)
 
     if statlist == nil
       db_statlists.create(
-        stat_code:stat_code,
-        stat_name:stat_name,
-        table_code:table_code,
-        table_name:table_name,
+        stat_code:@stat_code,
+        stat_name:@stat_name,
+        table_code:@table_code,
+        table_name:@table_name,
         update_date:@update_date
         )
     else
-      statlist.stat_code = stat_code
-      statlist.stat_name = stat_name
-      statlist.table_code = table_code      
-      statlist.table_name = table_name
+      statlist.stat_code = @stat_code
+      statlist.stat_name = @stat_name
+      statlist.table_code = @table_code      
+      statlist.table_name = @table_name
       statlist.last_date = statlist.update_date
       statlist.update_date = @update_date
       statlist.save
@@ -106,14 +123,14 @@ end
           
           data_value.each do |data|
             db_datas.create(
-            date_code:data[:@time],            
-            category_code:data[:@cat01],
-            data:data[:"$"],
-            data_unit:data[:@unit],
-            update_date:@update_date
+                table_code:@table_code,
+                date_code:data[:@time],
+                category_code:data[:@cat01],
+                data:data[:"$"],
+                data_unit:data[:@unit],
+                update_date:@update_date
               )
           end
       end
-
     end
   end

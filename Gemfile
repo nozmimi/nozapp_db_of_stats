@@ -67,3 +67,5 @@ gem'jquery-rails'
 gem 'chart-js-rails'
 
 gem 'gon'
+
+gem 'whenever', require: false

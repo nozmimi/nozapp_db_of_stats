@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>（仮）経済指標ＤＢ.noz</title>
+    <title>noz.経済指標ＤＢ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,12 +15,10 @@
       <a class=navbar-brand nav-a" href="index">
         <img src="/top_icon.png" class="d-inline-block align-top nav-img" alt="top-icon">
       </a>
-      <a href="show">テスト用</a>
+      <a href="nea_data">テスト用</a>
     </nav>
     
-      <%= button_to "ボタン", {controller: 'eco_indicator', action: 'test'}, {method: :get} %>
-      <%= button_to "新規作成", :action => "show" %>
-      <%= button_to "作成",  {:action => "show"}, {:remote => true} %>    
+      <%= button_to "更新", {controller: 'eco_indicator', action: 'update_data'}, {method: :post} %>
       
       
     <div class="container">
