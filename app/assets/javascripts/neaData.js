@@ -7,7 +7,7 @@ function nea_data(date_unit,tableTitle,tableData){
     
     var text
     
-    var colName = ["11","12","16","19","21","22","23"];
+    var colName = ["11","12","16","19"];
 
     for( i=0; i<cat.length; i++){
         for(j=0; j<colName.length; j++){

@@ -25,12 +25,10 @@
           </li>
         </ul>
       </div>
-
     </nav>
-  
+<%= button_to "更新", {controller: 'eco_indicator', action: 'update_data'}, {method: :post} %>  
 
     <div class="container">
-
     
       <%= yield %>
     </div>
