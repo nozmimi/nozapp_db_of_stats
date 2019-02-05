@@ -1,17 +1,50 @@
-<h2>data</h2>
-<% @db_data.each do |data| %>
-    <%= data.table_code %>
-    <%= @db_stat.find_by(table_code:data.table_code).table_name %>
-    
-    <%= data.date_code %>
-    <%= @db_date.find_by(date_code:data.date_code).date_name %>
-    
-    <%= data.category_code %>
-    <%= @db_cat.find_by(category_code:data.category_code).category_name %>
-    
-    <%= data.data %>
-    <%= data.data_unit %>
-    <%= data.update_date %>
-    <br>
-<hr>
-<% end %>
+<ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="calYear-tab" data-toggle="tab" href="#calYear" role="tab" aria-controls="calYear" aria-selected="false">
+            実質暦年/2011暦年基準
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="fisYear-tab" data-toggle="tab" href="#fisYear" role="tab" aria-controls="fisYear" aria-selected="true">
+            実質年度/2011暦年基準
+        </a>
+    </li>
+</ul>
+
+<br>
+<p class="text-right">【単位：億円】</p>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="calYear" role="tabpanel" aria-labelledby="calYear-tab">
+        <div class="table-responsive-md">
+            <table class="table table-bordered">
+                <thead>
+                <tr id="tableTitle_calYear" class="text-center table-primary">
+                    <th>年月</th>
+                </tr>
+                </thead>
+                <tbody id="tableData_calYaer">
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="fisYear" role="tabpanel" aria-labelledby="fisYear-tab">
+        <div class="table-responsive-md">
+            <table class="table table-bordered">
+                <thead>
+                <tr id="tableTitle_fisYear" class="text-center table-primary">
+                    <th>年月</th>
+                </tr>
+                </thead>
+                <tbody id="tableData_fisYear">
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div> 
+
+
+<script>nea_data(tableTitle_calYear,tableData_calYaer)</script>

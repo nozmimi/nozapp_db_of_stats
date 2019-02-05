@@ -13,10 +13,10 @@ class EcoIndicatorController < ApplicationController
   end
 
   def nea_data
-    @db_stat = StatisticsList.all
-    @db_date = DateList.all
-    @db_cat = CategoryList.all
-    @db_data = NominalNationalEconomicAccounting.all
+    gon.db_stat = StatisticsList.all
+    gon.db_date = DateList.all
+    gon.db_cat = CategoryList.all
+    gon.db_nominal = NominalNationalEconomicAccounting.all
   end
 
 def update_data
