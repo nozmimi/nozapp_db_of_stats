@@ -1,17 +1,8 @@
 class EcoIndicatorController < ApplicationController
 
   def index
-    @db_statlists = StatisticsList.all
-  
   end
   
-  def show
-    @db_statlists = StatisticsList.all
-    @db_datelists = DateList.all
-    @db_catlists = CategoryList.all
-    @db_nea_data = NominalNationalEconomicAccounting.all
-  end
-
   def nea_data
     gon.db_stat = StatisticsList.all
     gon.db_date = DateList.all
@@ -19,15 +10,16 @@ class EcoIndicatorController < ApplicationController
     gon.db_nominal = NominalNationalEconomicAccounting.all
   end
 
-def update_data
-    #国民経済計算（名目）
-    update_nea(NominalNationalEconomicAccounting.all,["0003109741","0003109786","0003109742"])
-    
-    #国民経済計算（実質）
-    update_nea(RealNationalEconomicAccounting.all,["0003109766","0003109751","0003109767"])
-    
-    redirect_to :action => "index"
-end
+  def update_data
+      #国民経済計算（名目）
+      update_nea(NominalNationalEconomicAccounting.all,["0003109741","0003109786","0003109742"])
+      
+      #国民経済計算（実質）
+      update_nea(RealNationalEconomicAccounting.all,["0003109766","0003109751","0003109767"])
+      
+  end
+
+helper_method :update_data
 
 end
 

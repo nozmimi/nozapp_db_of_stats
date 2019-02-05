@@ -1,14 +1,19 @@
 <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="calYear-tab" data-toggle="tab" href="#calYear" role="tab" aria-controls="calYear" aria-selected="false">
-            実質暦年/2011暦年基準
+            暦年（名目）
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="fisYear-tab" data-toggle="tab" href="#fisYear" role="tab" aria-controls="fisYear" aria-selected="true">
-            実質年度/2011暦年基準
+            年度（名目）
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="fisYear-tab" data-toggle="tab" href="#quarter" role="tab" aria-controls="fisYear" aria-selected="true">
+            四半期（名目）
+        </a>
+    </li>    
 </ul>
 
 <br>
@@ -25,6 +30,7 @@
                 </thead>
                 <tbody id="tableData_calYaer">
                     <tr></tr>
+                    <script>nea_data("時間軸（暦年）",tableTitle_calYear,tableData_calYaer)</script>
                 </tbody>
             </table>
         </div>
@@ -39,12 +45,27 @@
                 </thead>
                 <tbody id="tableData_fisYear">
                     <tr></tr>
+                    <script>nea_data("時間軸（年度）",tableTitle_fisYear,tableData_fisYear)</script>
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="tab-pane fade" id="quarter" role="tabpanel" aria-labelledby="quarter-tab">
+        <div class="table-responsive-md">
+            <table class="table table-bordered">
+                <thead>
+                <tr id="tableTitle_quarter" class="text-center table-primary">
+                    <th>年月</th>
+                </tr>
+                </thead>
+                <tbody id="tableData_quarter">
+                    <tr></tr>
+                    <script>nea_data("時間軸（四半期）",tableTitle_quarter,tableData_quarter)</script>
+                </tbody>
+            </table>
+        </div>
+    </div>    
+    
+    
 </div>
 </div> 
-
-
-<script>nea_data(tableTitle_calYear,tableData_calYaer)</script>
