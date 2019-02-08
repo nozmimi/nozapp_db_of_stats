@@ -6,7 +6,10 @@ require 'rails/all'
     require 'json'
     require 'pp'
     require 'date'
-
+    
+    #nokogiriで使う
+    require 'open-uri'
+    require 'nokogiri'
     
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

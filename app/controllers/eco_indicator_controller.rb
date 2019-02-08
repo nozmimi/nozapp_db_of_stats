@@ -1,6 +1,7 @@
 class EcoIndicatorController < ApplicationController
 
   def index
+    scrape_gdp
   end
   
   def nea_data
@@ -16,11 +17,8 @@ class EcoIndicatorController < ApplicationController
       
       #国民経済計算（実質）
       update_nea(RealNationalEconomicAccounting.all,["0003109766","0003109751","0003109767"])
-      
   end
-
-helper_method :update_data
-
+  helper_method :update_data
 end
 
 
@@ -126,3 +124,37 @@ end
       end
     end
   end
+
+  def scrape_gdp
+      url = 'https://www.esri.cao.go.jp/jp/news/index.html'
+      link_url = "https://www.esri.cao.go.jp"
+
+      charset = nil
+      
+      html = open(url) do |f|
+          charset = f.charset
+          f.read
+      end
+      
+      doc = Nokogiri::HTML.parse(html, nil, charset)
+  
+      doc.xpath('//dl[@class = "topicsList"]').each do |node|
+        @doc_dt = node.xpath("dt")
+        @doc_dd = node.xpath("dd")
+        @doc_a = node.xpath("dd/a")
+      end
+      
+      @doc_href = []
+      @doc_a.each do |a|
+        a_href = a[:href]
+        a_href[0..4] = link_url
+        @doc_href.push(a_href)
+      end
+
+  end
+    
+    # @href[0..4] =  "https://www.esri.cao.go.jp"
+        # node.xpath("dt").each do |text|
+        #   pp text.inner_text
+        # end
+#            <a href= <%= @href[1][:href] %> >test</a>
