@@ -2,6 +2,8 @@ class EcoIndicatorController < ApplicationController
 
   def index
     scrape_gdp
+    mhlw
+    meti
   end
   
   def nea_data
@@ -152,9 +154,58 @@ end
       end
 
   end
-    
-    # @href[0..4] =  "https://www.esri.cao.go.jp"
-        # node.xpath("dt").each do |text|
-        #   pp text.inner_text
-        # end
-#            <a href= <%= @href[1][:href] %> >test</a>
+  
+  def mhlw
+      url = "https://www.mhlw.go.jp/toukei/saikin/"
+      html = open(url, "r:utf-8").read
+      
+      doc = Nokogiri::HTML.parse(html, nil)
+      
+      @mhlw_href = []
+      @mhlw_time = []
+      @mhlw_span = []
+      
+      doc.xpath('//ul[@class = "m-listNews"]/li').each do |node|
+        node_a = node.xpath("a")
+        node_a.each do |a|
+          a_href = a[:href]
+          @mhlw_href.push(a_href)
+        end
+        
+        time = node.xpath("a/div/time").inner_text
+        @mhlw_time.push(time)
+        
+        span = node.xpath("a/div/span").inner_text
+        @mhlw_span.push(span)
+      end
+  end
+  
+  def meti
+      url = "http://www.meti.go.jp/statistics/index.html"
+      html = open(url, "r:utf-8").read
+      
+      doc = Nokogiri::HTML.parse(html, nil)
+      @meti_time = []      
+      @meti_href = []
+      @meti_text = []
+      
+      doc.xpath('//ul[@class = "lnkLst"]/li').each do |node|
+        time = node.inner_text
+        @meti_time.push(time)
+        
+        node_a = node.xpath("a")
+        node_a.each do |a|
+          a_href = a[:href]
+          if !a_href.include?("meti.go.jp")
+            a_href.insert(0,"http://www.meti.go.jp/statistics/")  
+          end
+
+          a_text = a.inner_text
+          
+          @meti_href.push(a_href)
+          @meti_text.push(a_text)
+        end
+      end
+  end
+  
+  #"http://www.meti.go.jp/statistics/"
