@@ -103,7 +103,7 @@ end
                 data_cat01 = obj[:CLASS]
                 
                 data_cat01.each do |cat01|
-                  if db_catlists.find_by(category_code:cat01[:@code]) == nil or category_code:cat01[:@code]<25
+                  if db_catlists.find_by(category_code:cat01[:@code]) == nil
                      db_catlists.create(
                          category_code:cat01[:@code],
                          category_name:cat01[:@name]
