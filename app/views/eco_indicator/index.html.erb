@@ -7,15 +7,6 @@
   
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#Cabinet">内閣府</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#METI">経済産業省</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#MHLW">厚生労働省</a>
-      </li>
     </ul>
     <span class="navbar-text">
         <div class="input-group">
@@ -29,8 +20,10 @@
 </nav>
 
 <div data-spy="scroll" data-target="#nav-news" data-offset="0" class="p-3">
+  
   <h4 id="Cabinet" class="pt-4">内閣府</h4>
   <hr>
+  <div class="nav-inf">
       <% i=0 %>
       <% @doc_dt.length.times do %>
         <%= @doc_dt[i].inner_text %>
@@ -39,9 +32,12 @@
         <hr>
         <% i+=1 %>
       <% end %>
-      
+  </div>
+
+  <br>  
   <h4 id="METI" class="pt-4">経済産業省</h4>
   <hr>
+  <div class="nav-inf">
       <% i=0 %>
       <% @meti_time.length.times do %>
         <%= @meti_time[i] %>
@@ -50,9 +46,12 @@
         <hr>
         <% i+=1 %>
       <% end %>  
-      
+  </div>
+  
+  <br>
   <h4 id="MHLW" class="pt-4">厚生労働省</h4>
   <hr>
+  <div class="nav-inf">  
       <% i=0 %>
       <% 10.times do %>
         <%= @mhlw_time[i] %>
@@ -60,9 +59,7 @@
         <br>
         <hr>
         <% i+=1 %>
-      <% end %>  
-
-
-
-<%= @meti_href %>
+      <% end %>
+  </div>
+<br>
 </div>
