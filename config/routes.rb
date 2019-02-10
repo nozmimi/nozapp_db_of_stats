@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'index' => 'eco_indicator#index'
+  get '' => 'eco_indicator#index'
   get 'database' => 'eco_indicator#database'
   get 'statistics_data' => 'eco_indicator#statistics'
   get 'show' => 'eco_indicator#show'
