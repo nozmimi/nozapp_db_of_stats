@@ -23,10 +23,10 @@ class EcoIndicatorController < ApplicationController
   helper_method :update_data
 end
 
-
+  # 統計ＩＤからＵＲＬを作成し、統計ＤＢリストを作成する（全共通）
   def update_statistics_list(stats_id)
     
-    # APIアドレスの作成してJsonデータを取得し、parseしてグローバル変数へ代入
+    # APIアドレスの作成してJsonデータを取得し、parseして変数へ代入
     api_url = "https://api.e-stat.go.jp/rest/2.1/app/json/getStatsData"
     api_appid = "bb86c86ee575b3adfa4930ee0f17a74de14e57e6"
     @req_url = api_url +"?appId=" + api_appid +"&statsDataId=" + stats_id
@@ -37,12 +37,15 @@ end
     data_json = Net::HTTP.get(req_uri)
     @data_all = JSON.parse(data_json, symbolize_names: true)    
 
+    # 必要な項目をそれぞれ変数に代入
     @stat_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:@code]
     @stat_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:STAT_NAME][:"$"]
     @table_code = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:@id]
     @table_name = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:TITLE]
     @update_date = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:TABLE_INF][:UPDATED_DATE]
     
+    
+    # 統計リストＤＢの作成
     db_statlists = StatisticsList.all
     statlist = db_statlists.find_by(table_code:@table_code)
 
@@ -65,17 +68,20 @@ end
     end
   end
 
-
-
+  
+  #国民経済計算(NationalEconomicAccounting)
   def update_nea(db_datas,nea_id)
-    #国民経済計算(NationalEconomicAccounting)のID
     
     nea_id.each do |id|
+      
+      # ＵＲＬ作成～統計リスト作成のメソッドを呼び出し
       update_statistics_list(id)
       
       db_statlists = StatisticsList.all
         statlist = db_statlists.find_by(table_code:id)
       
+      # 統計リストの前回更新日が空欄、もしくは更新日が前回更新日と一致しない場合に
+      # 統計ＤＢを作成、更新する
       if statlist.last_date == nil or statlist.last_date != statlist.update_date
 
           data_value = @data_all[:GET_STATS_DATA][:STATISTICAL_DATA][:DATA_INF][:VALUE]
@@ -103,7 +109,8 @@ end
                 data_cat01 = obj[:CLASS]
                 
                 data_cat01.each do |cat01|
-                  if db_catlists.find_by(category_code:cat01[:@code]) == nil
+                  pp cat01[:@code]
+                  if cat01[:@code] < "23" and db_catlists.find_by(category_code:cat01[:@code]) == nil 
                      db_catlists.create(
                          category_code:cat01[:@code],
                          category_name:cat01[:@name]
@@ -114,14 +121,16 @@ end
           end
           
           data_value.each do |data|
-            db_datas.create(
-                table_code:@table_code,
-                date_code:data[:@time],
-                category_code:data[:@cat01],
-                data:data[:"$"],
-                data_unit:data[:@unit],
-                update_date:@update_date
-              )
+            if data[:@cat01] < "23"
+              db_datas.create(
+                  table_code:@table_code,
+                  date_code:data[:@time],
+                  category_code:data[:@cat01],
+                  data:data[:"$"],
+                  data_unit:data[:@unit],
+                  update_date:@update_date
+                )
+            end
           end
       end
     end
