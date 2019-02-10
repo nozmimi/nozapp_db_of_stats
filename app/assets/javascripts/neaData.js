@@ -1,9 +1,9 @@
-function nea_data(date_unit,tableTitle,tableData){
+function nea_data(date_unit,database,tableTitle,tableData){
 
     var date = gon.db_date;
     var cat = gon.db_cat;
     var stat = gon.db_stat;
-    var data = gon.db_nominal;
+    var data = database;
     
     var text
     

@@ -5,12 +5,13 @@ class EcoIndicatorController < ApplicationController
     scrape_mhlw
     scrape_meti
   end
-  
-  def nea_data
+
+  def database
     gon.db_stat = StatisticsList.all
     gon.db_date = DateList.all
     gon.db_cat = CategoryList.all
     gon.db_nominal = NominalNationalEconomicAccounting.all
+    gon.db_real = RealNationalEconomicAccounting.all
   end
 
   def update_data
@@ -208,7 +209,7 @@ end
       @meti_text = []
       
       doc.xpath('//ul[@class = "lnkLst"]/li').each do |node|
-        time = node.inner_text
+        time = node.xpath("text()")
         @meti_time.push(time)
         
         node_a = node.xpath("a")
@@ -218,7 +219,7 @@ end
             a_href.insert(0,"http://www.meti.go.jp/statistics/")  
           end
 
-          a_text = a.inner_text
+          a_text = a.xpath("text()")
           
           @meti_href.push(a_href)
           @meti_text.push(a_text)

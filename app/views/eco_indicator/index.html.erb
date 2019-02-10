@@ -1,10 +1,9 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light my-4">
   <a class="navbar-brand" href="index">新着情報</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  
+
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
     </ul>
@@ -14,7 +13,7 @@
         	<span class="input-group-btn">
         		<button type="button" class="btn btn-default btn-light">検索</button>
         	</span>
-        </div>  
+        </div>
     </span>
   </div>
 </nav>
@@ -22,7 +21,7 @@
 <div class="row">
   <div class="col-9">
     <div data-spy="scroll" data-target="#nav-news" data-offset="0" class="p-3">
-      
+
       <h4 id="Cabinet" class="pt-4">内閣府</h4>
       <hr>
       <div class="nav-inf">
@@ -35,25 +34,27 @@
             <% i+=1 %>
           <% end %>
       </div>
-    
-      <br>  
+
+      <br>
       <h4 id="METI" class="pt-4">経済産業省</h4>
       <hr>
       <div class="nav-inf">
           <% i=0 %>
           <% @meti_time.length.times do %>
-            <%= @meti_time[i] %>
-            <a href= <%= @meti_href[i] %> target="blank"><%= @meti_text[i] %></a>
-            <br>
-            <hr>
-            <% i+=1 %>
-          <% end %>  
+            <% if @meti_time[i].present? %>
+              <%= @meti_time[i] %>
+              <a href= <%= @meti_href[i] %> target="blank"><%= @meti_text[i] %></a>
+              <br>
+              <hr>
+              <% i+=1 %>
+            <% end %>
+          <% end %>
       </div>
-      
+
       <br>
       <h4 id="MHLW" class="pt-4">厚生労働省</h4>
       <hr>
-      <div class="nav-inf">  
+      <div class="nav-inf">
           <% i=0 %>
           <% 10.times do %>
             <%= @mhlw_time[i] %>
@@ -63,14 +64,14 @@
             <% i+=1 %>
           <% end %>
       </div>
-    </div>
+      
   </div>
-  
+</div>
+
   <div class="col-3">
+    <div class="container text-center f_size-80 mt-3">
 
-    <div class="container text-center f-size mt-3">
-
-      <div class="card mt-3" style="width: 18rem;">
+      <div class="card mt-3 p-2" style="width: 18rem;">
         <span class="a8ad 3bGtnzi-g7-rhATyDQ"></span>
         <script type="text/javascript" src="//statics.a8.net/ad/ad.js"></script>
         <script type="text/javascript">a8adscript('body').showAd({"req": {"mat":"2ZTQ40+247IZE+10UY+NT4HD","alt":"商品リンク","id":"3bGtnzi-g7-rhATyDQ"},"goods": {"ejp":"h"+"ttps://honto.jp/ebook/pd_27772753.html","imu":"h"+"ttps://image.honto.jp/item/1/133/2777/2753/27772753_1TL.png"}});</script>
@@ -80,7 +81,7 @@
         </div>
       </div>
 
-      <div class="card mt-3" style="width: 18rem;">
+      <div class="card mt-3 p-2" style="width: 18rem;">
         <span class="a8ad 3bGtnzi-g7-rhAWAVv"></span><script type="text/javascript" src="//statics.a8.net/ad/ad.js"></script><script type="text/javascript">a8adscript('body').showAd({"req": {"mat":"2ZTQ40+247IZE+10UY+NT4HD","alt":"商品リンク","id":"3bGtnzi-g7-rhAWAVv"},"goods": {"ejp":"h"+"ttps://honto.jp/ebook/pd_10127519.html","imu":"h"+"ttps://image.honto.jp/item/1/133/1012/7519/10127519_1TL.png"}});</script>
         <div class="card-body">
           <a href="https://px.a8.net/svt/ejp?a8mat=2ZTQ40+247IZE+10UY+NSWRM&a8ejpredirect=https%3A%2F%2Fhonto.jp%2Febook%2Fpd_10127519.html" target="_blank" rel="nofollow">新聞読みの達人 小宮一慶氏が、日経記事の読みこなし＆活用テクニックを初公開！　著者が長年の経験から培った新聞情報活用ノウハウがぎっしり。この1冊を読むだけで、経済の動き...</a>
@@ -88,10 +89,6 @@
         </div>
       </div>
 
-
     </div>
-
-
-    
   </div>
 </div>
