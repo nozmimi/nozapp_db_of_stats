@@ -29,6 +29,16 @@
             <a class="nav-link" id="quarter_real-tab" data-toggle="tab" href="#quarter_real" role="tab" aria-controls="quarter_real" aria-selected="true">
                 四半期（実質）
             </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="calYear_eof-tab" data-toggle="tab" href="#calYear_eof" role="tab" aria-controls="calYear_eof" aria-selected="true">
+                家計消費支出（暦年）
+            </a>
+        </li>        
+        <li class="nav-item">
+            <a class="nav-link" id="quarter_eof-tab" data-toggle="tab" href="#quarter_eof" role="tab" aria-controls="quarter_eof" aria-selected="true">
+                家計消費支出（四半期）
+            </a>
         </li>        
     </ul>
     
@@ -47,7 +57,7 @@
                     </thead>
                     <tbody id="tableData_calYaer_nominal">
                         <tr></tr>
-                        <script>nea_data("時間軸（暦年）",gon.db_nominal,tableTitle_calYear_nominal,tableData_calYaer_nominal)</script>
+                        <script>nea_data_all("時間軸（暦年）",gon.db_nominal,tableTitle_calYear_nominal,tableData_calYaer_nominal)</script>
                     </tbody>
                 </table>
             </div>
@@ -63,7 +73,7 @@
                     </thead>
                     <tbody id="tableData_calYear_real">
                         <tr></tr>
-                        <script>nea_data("時間軸（暦年）",gon.db_real,tableTitle_calYear_real,tableData_calYear_real)</script>
+                        <script>nea_data_all("時間軸（暦年）",gon.db_real,tableTitle_calYear_real,tableData_calYear_real)</script>
                     </tbody>
                 </table>
             </div>
@@ -79,7 +89,7 @@
                     </thead>
                     <tbody id="tableData_fisYear_nominal">
                         <tr></tr>
-                        <script>nea_data("時間軸（年度）",gon.db_nominal,tableTitle_fisYear_nominal,tableData_fisYear_nominal)</script>
+                        <script>nea_data_all("時間軸（年度）",gon.db_nominal,tableTitle_fisYear_nominal,tableData_fisYear_nominal)</script>
                     </tbody>
                 </table>
             </div>
@@ -95,7 +105,7 @@
                     </thead>
                     <tbody id="tableData_fisYear_real">
                         <tr></tr>
-                        <script>nea_data("時間軸（年度）",gon.db_real,tableTitle_fisYear_real,tableData_fisYear_real)</script>
+                        <script>nea_data_all("時間軸（年度）",gon.db_real,tableTitle_fisYear_real,tableData_fisYear_real)</script>
                     </tbody>
                 </table>
             </div>
@@ -111,7 +121,7 @@
                     </thead>
                     <tbody id="tableData_quarter_nominal">
                         <tr></tr>
-                        <script>nea_data("時間軸（四半期）",gon.db_nominal,tableTitle_quarter_nominal,tableData_quarter_nominal)</script>
+                        <script>nea_data_all("時間軸（四半期）",gon.db_nominal,tableTitle_quarter_nominal,tableData_quarter_nominal)</script>
                     </tbody>
                 </table>
             </div>
@@ -127,11 +137,42 @@
                     </thead>
                     <tbody id="tableData_quarter_real">
                         <tr></tr>
-                        <script>nea_data("時間軸（四半期）",gon.db_real,tableTitle_quarter_real,tableData_quarter_real)</script>
+                        <script>nea_data_all("時間軸（四半期）",gon.db_real,tableTitle_quarter_real,tableData_quarter_real)</script>
                     </tbody>
                 </table>
             </div>
         </div>       
+        
+        <div class="tab-pane fade" id="calYear_eof" role="tabpanel" aria-labelledby="calYear_eof-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_calYear_eof" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_calYear_eof">
+                        <tr></tr>
+                        <script>eof_data_all("時間軸（暦年）",gon.db_eof,tableTitle_calYear_eof,tableData_calYear_eof)</script>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+        <div class="tab-pane fade" id="quarter_eof" role="tabpanel" aria-labelledby="calYear_eof-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_quarter_eof" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_quarter_eof">
+                        <tr></tr>
+                        <script>eof_data_all("時間軸（四半期）",gon.db_eof,tableTitle_quarter_eof,tableData_quarter_eof)</script>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
         
     </div>
 </div>

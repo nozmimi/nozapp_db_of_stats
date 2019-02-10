@@ -1,54 +1,25 @@
-<h2>カテゴリーリスト</h2>
-<% @db_statlists.each do |data| %>
-<%= data.stat_code %>
-<br>
-<%= data.stat_name %>
-<br>
-<%= data.table_code %>
-<br>
-<%= data.table_name %>
-<br>
-<%= data.update_date %>
-<br>
-<%= data.last_date %>
-<br>
-<hr>
-<% end %>
-<br>
-
-
-<h2>catリスト</h2>
-<% @db_catlists.each do |data| %>
-<%= data.category_code %>
-<br>
-<%= data.category_name %>
-<br>
-<hr>
-<% end %>
-<hr>
-
-<h2>data</h2>
-<% @db_nea_data.each do |data| %>
-    <%= data.date_code %>
-    <%= @db_datelists.find_by(date_code:data.date_code).date_name %>
-    <%= data.category_code %>
-    <%= @db_catlists.find_by(category_code:data.category_code).category_name %>
-    <%= data.data %>
-    <%= data.data_unit %>
-    <%= data.update_date %>
+<h2>db_stat</h2>
+<% @db_stat.each do |data| %>
+    <%= data.table_code %>
+    <%= @db_stat.find_by(table_code:data.table_code).table_name %>
     <br>
 <hr>
 <% end %>
 
-<br>
-<hr>
-<h2>年月リスト</h2>
-<% @db_datelists.each do |data| %>
-<%= data.date_code %>
-<br>
-<%= data.date_name %>
-<br>
-<%= data.date_unit %>
-<br>
+<h2>data</h2>
+<% @db_test.each do |data| %>
+    <%= data.table_code %>
+    <%= @db_stat.find_by(table_code:data.table_code).table_name %>
+    
+    <%= data.date_code %>
+    <%= @db_date.find_by(date_code:data.date_code).date_name %>
+    
+    <%= data.category_code %>
+    <%= @db_cat.find_by(category_code:data.category_code).category_name %>
+    
+    <%= data.data %>
+    <%= data.data_unit %>
+    <%= data.update_date %>
+    <br>
 <hr>
 <% end %>
