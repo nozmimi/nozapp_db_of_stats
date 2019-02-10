@@ -2,8 +2,8 @@ class EcoIndicatorController < ApplicationController
 
   def index
     scrape_gdp
-    mhlw
-    meti
+    scrape_mhlw
+    scrape_meti
   end
   
   def nea_data
@@ -19,8 +19,13 @@ class EcoIndicatorController < ApplicationController
       
       #国民経済計算（実質）
       update_nea(RealNationalEconomicAccounting.all,["0003109766","0003109751","0003109767"])
+      
   end
-  helper_method :update_data
+
+  def admini_controller
+  end
+
+#  helper_method :update_data
 end
 
   # 統計ＩＤからＵＲＬを作成し、統計ＤＢリストを作成する（全共通）
@@ -137,6 +142,7 @@ end
     end
   end
 
+  # 内閣府(Cabinet Office)
   def scrape_gdp
       url = 'https://www.esri.cao.go.jp/jp/news/index.html'
       link_url = "https://www.esri.cao.go.jp"
@@ -165,7 +171,8 @@ end
 
   end
   
-  def mhlw
+  # 厚生労働省（Ministry of Health, Labour and Welfare）
+  def scrape_mhlw
       url = "https://www.mhlw.go.jp/toukei/saikin/"
       html = open(url, "r:utf-8").read
       
@@ -190,7 +197,8 @@ end
       end
   end
   
-  def meti
+  # 経済産業省(Ministry of Economy, Trade and Industry)
+  def scrape_meti
       url = "http://www.meti.go.jp/statistics/index.html"
       html = open(url, "r:utf-8").read
       
@@ -217,5 +225,3 @@ end
         end
       end
   end
-  
-  #"http://www.meti.go.jp/statistics/"
