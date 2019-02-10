@@ -14,6 +14,14 @@ class EcoIndicatorController < ApplicationController
     gon.db_real = RealNationalEconomicAccounting.all
   end
 
+  def statistics_data
+    gon.db_stat = StatisticsList.all
+    gon.db_date = DateList.all
+    gon.db_cat = CategoryList.all
+    gon.db_nominal = NominalNationalEconomicAccounting.all
+    gon.db_real = RealNationalEconomicAccounting.all
+  end
+  
   def update_data
       #国民経済計算（名目）
       update_nea(NominalNationalEconomicAccounting.all,["0003109741","0003109786","0003109742"])
@@ -208,7 +216,7 @@ end
       @meti_href = []
       @meti_text = []
       
-      doc.xpath('//ul[@class = "lnkLst"]/li').each do |node|
+      doc.xpath('//div[@class = "NewsList"]/ul[1]/li').each do |node|
         time = node.xpath("text()")
         @meti_time.push(time)
         

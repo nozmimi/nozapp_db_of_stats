@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'database' => 'eco_indicator#database'
   get 'admini_controller' => 'eco_indicator#admini_controller'
   post 'admini_controller' => 'eco_indicator#update_data'
+  get 'statistics_data' => 'eco_indicator#statistics'
 end

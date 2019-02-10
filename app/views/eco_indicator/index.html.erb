@@ -1,25 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light my-4">
   <a class="navbar-brand" href="index">新着情報</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-    </ul>
-    <span class="navbar-text">
-        <div class="input-group">
-        	<input type="text" class="form-control" placeholder="テキスト入力欄">
-        	<span class="input-group-btn">
-        		<button type="button" class="btn btn-default btn-light">検索</button>
-        	</span>
-        </div>
-    </span>
-  </div>
 </nav>
 
 <div class="row">
-  <div class="col-9">
+  <div class="col-md-9">
     <div data-spy="scroll" data-target="#nav-news" data-offset="0" class="p-3">
 
       <h4 id="Cabinet" class="pt-4">内閣府</h4>
@@ -41,13 +25,11 @@
       <div class="nav-inf">
           <% i=0 %>
           <% @meti_time.length.times do %>
-            <% if @meti_time[i].present? %>
-              <%= @meti_time[i] %>
-              <a href= <%= @meti_href[i] %> target="blank"><%= @meti_text[i] %></a>
-              <br>
-              <hr>
-              <% i+=1 %>
-            <% end %>
+            <%= @meti_time[i] %>
+            <a href= <%= @meti_href[i] %> target="blank"><%= @meti_text[i] %></a>
+            <br>
+            <hr>
+            <% i+=1 %>
           <% end %>
       </div>
 
@@ -68,7 +50,7 @@
   </div>
 </div>
 
-  <div class="col-3">
+  <div class="col-md-3">
     <div class="container text-center f_size-80 mt-3">
 
       <div class="card mt-3 p-2" style="width: 18rem;">
