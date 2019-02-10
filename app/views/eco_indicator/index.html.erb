@@ -1,50 +1,51 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light my-4">
-  <a class="navbar-brand" href="index">新着情報</a>
-</nav>
-
-<div class="row">
-  <div class="col-md-9">
+<div class="row pt-3">
+  <div class="col-md-9 pt-3">
+    <h3>新着情報</h3>
+    <hr>
     <div data-spy="scroll" data-target="#nav-news" data-offset="0" class="p-3">
 
-      <h4 id="Cabinet" class="pt-4">内閣府</h4>
-      <hr>
-      <div class="nav-inf">
-          <% i=0 %>
-          <% @doc_dt.length.times do %>
-            <%= @doc_dt[i].inner_text %>
-            <a href= <%= @doc_href[i] %> target="blank"><%= @doc_a[i].inner_text %></a>
-            <br>
-            <hr>
-            <% i+=1 %>
-          <% end %>
+      <div class="pt-2">
+        <h4 id="Cabinet">内閣府</h4>
+        <div class="nav-inf border p-4">
+            <% i=0 %>
+            <% @doc_dt.length.times do %>
+              <%= @doc_dt[i].inner_text %>
+              <a href= <%= @doc_href[i] %> target="blank"><%= @doc_a[i].inner_text %></a>
+              <br>
+              <hr>
+              <% i+=1 %>
+            <% end %>
+        </div>
       </div>
 
       <br>
-      <h4 id="METI" class="pt-4">経済産業省</h4>
-      <hr>
-      <div class="nav-inf">
-          <% i=0 %>
-          <% @meti_time.length.times do %>
-            <%= @meti_time[i] %>
-            <a href= <%= @meti_href[i] %> target="blank"><%= @meti_text[i] %></a>
-            <br>
-            <hr>
-            <% i+=1 %>
-          <% end %>
+      <div class="pt-2">
+        <h4 id="METI">経済産業省</h4>
+        <div class="nav-inf border p-4">
+            <% i=0 %>
+            <% @meti_time.length.times do %>
+              <%= @meti_time[i] %>
+              <a href= <%= @meti_href[i] %> target="blank"><%= @meti_text[i] %></a>
+              <br>
+              <hr>
+              <% i+=1 %>
+            <% end %>
+        </div>
       </div>
-
+      
       <br>
-      <h4 id="MHLW" class="pt-4">厚生労働省</h4>
-      <hr>
-      <div class="nav-inf">
-          <% i=0 %>
-          <% 10.times do %>
-            <%= @mhlw_time[i] %>
-            <a href= <%= @mhlw_href[i] %> target="blank"><%= @mhlw_span[i] %></a>
-            <br>
-            <hr>
-            <% i+=1 %>
-          <% end %>
+      <div class="pt-2">
+        <h4 id="MHLW">厚生労働省</h4>
+        <div class="nav-inf border p-4">
+            <% i=0 %>
+            <% 10.times do %>
+              <%= @mhlw_time[i] %>
+              <a href= <%= @mhlw_href[i] %> target="blank"><%= @mhlw_span[i] %></a>
+              <br>
+              <hr>
+              <% i+=1 %>
+            <% end %>
+        </div>
       </div>
       
   </div>
