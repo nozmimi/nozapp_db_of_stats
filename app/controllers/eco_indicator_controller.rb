@@ -71,6 +71,7 @@ end
   
   #国民経済計算(NationalEconomicAccounting)
   def update_nea(db_datas,nea_id)
+    read_cat01_code = "23"
     
     nea_id.each do |id|
       
@@ -110,7 +111,7 @@ end
                 
                 data_cat01.each do |cat01|
                   pp cat01[:@code]
-                  if cat01[:@code] < "23" and db_catlists.find_by(category_code:cat01[:@code]) == nil 
+                  if cat01[:@code] <= read_cat01_code and db_catlists.find_by(category_code:cat01[:@code]) == nil 
                      db_catlists.create(
                          category_code:cat01[:@code],
                          category_name:cat01[:@name]
@@ -121,7 +122,7 @@ end
           end
           
           data_value.each do |data|
-            if data[:@cat01] < "23"
+            if data[:@cat01] <= read_cat01_code
               db_datas.create(
                   table_code:@table_code,
                   date_code:data[:@time],
