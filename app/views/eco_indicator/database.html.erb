@@ -1,136 +1,137 @@
-<ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="calYear_nominal-tab" data-toggle="tab" href="#calYear_nominal" role="tab" aria-controls="calYear_nominal" aria-selected="false">
-            暦年（名目）
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="calYear_real-tab" data-toggle="tab" href="#calYear_real" role="tab" aria-controls="calYear_real" aria-selected="false">
-            暦年（実質）
-        </a>
-    </li>      
-    <li class="nav-item">
-        <a class="nav-link" id="fisYear_nominal-tab" data-toggle="tab" href="#fisYear_nominal" role="tab" aria-controls="fisYear_nominal" aria-selected="true">
-            年度（名目）
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="fisYear_real-tab" data-toggle="tab" href="#fisYear_real" role="tab" aria-controls="fisYear_real" aria-selected="true">
-            年度（実質）
-        </a>
-    </li>   
-    <li class="nav-item">
-        <a class="nav-link" id="quarterYear_nominal-tab" data-toggle="tab" href="#quarter_nominal" role="tab" aria-controls="quarter_nominal" aria-selected="true">
-            四半期（名目）
-        </a>
-    </li> 
-    <li class="nav-item">
-        <a class="nav-link" id="quarter_real-tab" data-toggle="tab" href="#quarter_real" role="tab" aria-controls="quarter_real" aria-selected="true">
-            四半期（実質）
-        </a>
-    </li>        
-</ul>
-
-<br>
-<p class="text-right">【単位：億円】</p>
-
-<div class="tab-content" id="myTabContent">
+<div class="pt-3">
+    <ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="calYear_nominal-tab" data-toggle="tab" href="#calYear_nominal" role="tab" aria-controls="calYear_nominal" aria-selected="false">
+                暦年（名目）
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="calYear_real-tab" data-toggle="tab" href="#calYear_real" role="tab" aria-controls="calYear_real" aria-selected="false">
+                暦年（実質）
+            </a>
+        </li>      
+        <li class="nav-item">
+            <a class="nav-link" id="fisYear_nominal-tab" data-toggle="tab" href="#fisYear_nominal" role="tab" aria-controls="fisYear_nominal" aria-selected="true">
+                年度（名目）
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="fisYear_real-tab" data-toggle="tab" href="#fisYear_real" role="tab" aria-controls="fisYear_real" aria-selected="true">
+                年度（実質）
+            </a>
+        </li>   
+        <li class="nav-item">
+            <a class="nav-link" id="quarterYear_nominal-tab" data-toggle="tab" href="#quarter_nominal" role="tab" aria-controls="quarter_nominal" aria-selected="true">
+                四半期（名目）
+            </a>
+        </li> 
+        <li class="nav-item">
+            <a class="nav-link" id="quarter_real-tab" data-toggle="tab" href="#quarter_real" role="tab" aria-controls="quarter_real" aria-selected="true">
+                四半期（実質）
+            </a>
+        </li>        
+    </ul>
     
-    <div class="tab-pane fade show active" id="calYear_nominal" role="tabpanel" aria-labelledby="calYear_nominal-tab">
-        <div class="table-responsive-md">
-            <table class="table table-bordered">
-                <thead>
-                <tr id="tableTitle_calYear_nominal" class="text-center table-primary">
-                    <th>年月</th>
-                </tr>
-                </thead>
-                <tbody id="tableData_calYaer_nominal">
-                    <tr></tr>
-                    <script>nea_data("時間軸（暦年）",gon.db_nominal,tableTitle_calYear_nominal,tableData_calYaer_nominal)</script>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <br>
+    <p class="text-right">【単位：億円】</p>
     
-    <div class="tab-pane fade" id="calYear_real" role="tabpanel" aria-labelledby="calYear_real-tab">
-        <div class="table-responsive-md">
-            <table class="table table-bordered">
-                <thead>
-                <tr id="tableTitle_calYear_real" class="text-center table-primary">
-                    <th>年月</th>
-                </tr>
-                </thead>
-                <tbody id="tableData_calYear_real">
-                    <tr></tr>
-                    <script>nea_data("時間軸（暦年）",gon.db_real,tableTitle_calYear_real,tableData_calYear_real)</script>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <div class="tab-content f_size-80" id="myTabContent">
         
-    <div class="tab-pane fade" id="fisYear_nominal" role="tabpanel" aria-labelledby="fisYear_nominal-tab">
-        <div class="table-responsive-md">
-            <table class="table table-bordered">
-                <thead>
-                <tr id="tableTitle_fisYear_nominal" class="text-center table-primary">
-                    <th>年月</th>
-                </tr>
-                </thead>
-                <tbody id="tableData_fisYear_nominal">
-                    <tr></tr>
-                    <script>nea_data("時間軸（年度）",gon.db_nominal,tableTitle_fisYear_nominal,tableData_fisYear_nominal)</script>
-                </tbody>
-            </table>
+        <div class="tab-pane fade show active" id="calYear_nominal" role="tabpanel" aria-labelledby="calYear_nominal-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_calYear_nominal" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_calYaer_nominal">
+                        <tr></tr>
+                        <script>nea_data("時間軸（暦年）",gon.db_nominal,tableTitle_calYear_nominal,tableData_calYaer_nominal)</script>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
         
-    <div class="tab-pane fade" id="fisYear_real" role="tabpanel" aria-labelledby="fisYear_real-tab">
-        <div class="table-responsive-md">
-            <table class="table table-bordered">
-                <thead>
-                <tr id="tableTitle_fisYear_real" class="text-center table-primary">
-                    <th>年月</th>
-                </tr>
-                </thead>
-                <tbody id="tableData_fisYear_real">
-                    <tr></tr>
-                    <script>nea_data("時間軸（年度）",gon.db_real,tableTitle_fisYear_real,tableData_fisYear_real)</script>
-                </tbody>
-            </table>
+        <div class="tab-pane fade" id="calYear_real" role="tabpanel" aria-labelledby="calYear_real-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_calYear_real" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_calYear_real">
+                        <tr></tr>
+                        <script>nea_data("時間軸（暦年）",gon.db_real,tableTitle_calYear_real,tableData_calYear_real)</script>
+                    </tbody>
+                </table>
+            </div>
         </div>
+            
+        <div class="tab-pane fade" id="fisYear_nominal" role="tabpanel" aria-labelledby="fisYear_nominal-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_fisYear_nominal" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_fisYear_nominal">
+                        <tr></tr>
+                        <script>nea_data("時間軸（年度）",gon.db_nominal,tableTitle_fisYear_nominal,tableData_fisYear_nominal)</script>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            
+        <div class="tab-pane fade" id="fisYear_real" role="tabpanel" aria-labelledby="fisYear_real-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_fisYear_real" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_fisYear_real">
+                        <tr></tr>
+                        <script>nea_data("時間軸（年度）",gon.db_real,tableTitle_fisYear_real,tableData_fisYear_real)</script>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="quarter_nominal" role="tabpanel" aria-labelledby="quarter_nominal-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_quarter_nominal" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_quarter_nominal">
+                        <tr></tr>
+                        <script>nea_data("時間軸（四半期）",gon.db_nominal,tableTitle_quarter_nominal,tableData_quarter_nominal)</script>
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+        
+        <div class="tab-pane fade" id="quarter_real" role="tabpanel" aria-labelledby="quarter_real-tab">
+            <div class="table-responsive-md">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr id="tableTitle_quarter_real" class="text-center table-primary">
+                        <th>年月</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableData_quarter_real">
+                        <tr></tr>
+                        <script>nea_data("時間軸（四半期）",gon.db_real,tableTitle_quarter_real,tableData_quarter_real)</script>
+                    </tbody>
+                </table>
+            </div>
+        </div>       
+        
     </div>
-    
-    <div class="tab-pane fade" id="quarter_nominal" role="tabpanel" aria-labelledby="quarter_nominal-tab">
-        <div class="table-responsive-md">
-            <table class="table table-bordered">
-                <thead>
-                <tr id="tableTitle_quarter_nominal" class="text-center table-primary">
-                    <th>年月</th>
-                </tr>
-                </thead>
-                <tbody id="tableData_quarter_nominal">
-                    <tr></tr>
-                    <script>nea_data("時間軸（四半期）",gon.db_nominal,tableTitle_quarter_nominal,tableData_quarter_nominal)</script>
-                </tbody>
-            </table>
-        </div>
-    </div>    
-    
-    <div class="tab-pane fade" id="quarter_real" role="tabpanel" aria-labelledby="quarter_real-tab">
-        <div class="table-responsive-md">
-            <table class="table table-bordered">
-                <thead>
-                <tr id="tableTitle_quarter_real" class="text-center table-primary">
-                    <th>年月</th>
-                </tr>
-                </thead>
-                <tbody id="tableData_quarter_real">
-                    <tr></tr>
-                    <script>nea_data("時間軸（四半期）",gon.db_real,tableTitle_quarter_real,tableData_quarter_real)</script>
-                </tbody>
-            </table>
-        </div>
-    </div>       
-    
 </div>
-</div> 

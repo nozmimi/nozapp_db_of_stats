@@ -14,8 +14,8 @@ function nea_data(date_unit,database,tableTitle,tableData){
             switch (cat[i]["category_code"]) {
                 case colName[j]:
                     var tHead = document.createElement("th");
-                         tHead.appendChild(document.createTextNode(cat[i]["category_name"]));
-                         tableTitle.appendChild(tHead);
+                        tHead.appendChild(document.createTextNode(cat[i]["category_name"]));
+                        tableTitle.appendChild(tHead);
             }
         }
     };  
