@@ -1,6 +1,7 @@
 function eof_data_all(date_unit,database,tableTitle,tableData){
 
     var date = gon.db_date;
+        date = date
     var cat = gon.db_cat;
     var stat = gon.db_stat;
     var data = database;

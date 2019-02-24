@@ -8,7 +8,7 @@ class EcoIndicatorController < ApplicationController
 
   def database
     gon.db_stat = StatisticsList.all
-    gon.db_date = DateList.all
+    gon.db_date = DateList.order('date_code DESC')
     gon.db_cat = CategoryList.all
     gon.db_nominal = NominalNationalEconomicAccounting.all
     gon.db_real = RealNationalEconomicAccounting.all
@@ -17,7 +17,7 @@ class EcoIndicatorController < ApplicationController
 
   def statistics_data
     gon.db_stat = StatisticsList.all
-    gon.db_date = DateList.all
+    gon.db_date = DateList.order('date_code DESC')
     gon.db_cat = CategoryList.all
     gon.db_nominal = NominalNationalEconomicAccounting.all
     gon.db_real = RealNationalEconomicAccounting.all
@@ -39,7 +39,7 @@ class EcoIndicatorController < ApplicationController
 
   def show
     @db_stat = StatisticsList.all
-    @db_date = DateList.all
+    @db_date = DateList.order(:category_code)
     @db_cat = CategoryList.all    
     @db_test = ExpenditureOfHousehold.all
   end
