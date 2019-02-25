@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_155118) do
+ActiveRecord::Schema.define(version: 2019_02_24_140629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_155118) do
     t.string "category_code"
     t.integer "data"
     t.string "data_unit"
-    t.string "update_date"
+    t.date "update_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_155118) do
     t.string "category_code"
     t.integer "data"
     t.string "data_unit"
-    t.string "update_date"
+    t.date "update_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_155118) do
     t.string "category_code"
     t.integer "data"
     t.string "data_unit"
-    t.string "update_date"
+    t.date "update_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(version: 2019_02_10_155118) do
     t.string "stat_name"
     t.string "table_code"
     t.string "table_name"
-    t.string "update_date"
-    t.string "last_date"
+    t.date "update_date"
+    t.date "last_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

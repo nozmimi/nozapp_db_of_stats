@@ -1,13 +1,16 @@
 require_relative 'boot'
 
 require 'rails/all'
+  
+    #httpリクエストで使用
     require 'net/http'
     require 'uri'
+    
+    #jsonデータの取得（ppは段組み表示用）
     require 'json'
     require 'pp'
-    require 'date'
     
-    #nokogiriで使う
+    #nokogiriで仕様
     require 'open-uri'
     require 'nokogiri'
     
