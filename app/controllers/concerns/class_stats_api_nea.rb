@@ -15,6 +15,7 @@ class Api_nea < Estat_api
     @read_end_cat01 = "23"     
   end
   
+  #コントローラーで呼び出すメソッド
   def create_database_nea
     get_require_item
     create_or_update_statslists
@@ -22,7 +23,6 @@ class Api_nea < Estat_api
   end
   
   def get_require_item
-
     # 必要な項目をそれぞれ変数に代入
     @stat_code = @meta_data[:GET_META_INFO][:METADATA_INF][:TABLE_INF][:STAT_NAME][:@code]
     @stat_name = @meta_data[:GET_META_INFO][:METADATA_INF][:TABLE_INF][:STAT_NAME][:"$"]
