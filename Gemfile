@@ -69,3 +69,6 @@ gem 'chart-js-rails'
 gem 'gon'
 
 gem 'whenever', require: false
+
+gem 'mini_racer'
+
