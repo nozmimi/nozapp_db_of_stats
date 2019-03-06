@@ -30,16 +30,6 @@
                 四半期（実質）
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="calYear_eof-tab" data-toggle="tab" href="#calYear_eof" role="tab" aria-controls="calYear_eof" aria-selected="true">
-                家計消費支出（暦年）
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="quarter_eof-tab" data-toggle="tab" href="#quarter_eof" role="tab" aria-controls="quarter_eof" aria-selected="true">
-                家計消費支出（四半期）
-            </a>
-        </li>
     </ul>
 
     <br>
@@ -138,37 +128,6 @@
                     <tbody id="tableData_quarter_real">
                         <tr></tr>
                         <script>nea_data_all("時間軸（四半期）",gon.db_real,tableTitle_quarter_real,tableData_quarter_real)</script>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="tab-pane fade" id="calYear_eof" role="tabpanel" aria-labelledby="calYear_eof-tab">
-            <div class="table-responsive-md">
-                <table class="table table-bordered table-hover table-responsive">
-                    <thead>
-                    <tr id="tableTitle_calYear_eof" class="text-center table-primary">
-                        <th>年月</th>
-                    </tr>
-                    </thead>
-                    <tbody id="tableData_calYear_eof">
-                        <tr></tr>
-                        <script>eof_data_all("時間軸（暦年）",gon.db_eof,tableTitle_calYear_eof,tableData_calYear_eof)</script>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="quarter_eof" role="tabpanel" aria-labelledby="calYear_eof-tab">
-            <div class="table-responsive-md">
-                <table class="table table-bordered table-hover table-responsive">
-                    <thead>
-                    <tr id="tableTitle_quarter_eof" class="text-center table-primary">
-                        <th>年月</th>
-                    </tr>
-                    </thead>
-                    <tbody id="tableData_quarter_eof">
-                        <tr></tr>
-                        <script>eof_data_all("時間軸（四半期）",gon.db_eof,tableTitle_quarter_eof,tableData_quarter_eof)</script>
                     </tbody>
                 </table>
             </div>
