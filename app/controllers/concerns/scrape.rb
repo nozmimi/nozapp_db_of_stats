@@ -47,6 +47,7 @@
           end
 
           time = node.xpath("a/div/time").inner_text
+          time = time.sub(/掲載/,"")
           @mhlw_time.push(time)
 
           span = node.xpath("a/div/span").inner_text
