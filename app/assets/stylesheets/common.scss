@@ -19,11 +19,11 @@ img.nav-img{
   height:4rem;
 }
 
-.canvas {
+.canvas{
     position: relative;
     z-index: 1; /* 必要であればリンク要素の重なりのベース順序指定 */
 }
-.canvas a {
+.canvas a{
     position: absolute;
     top: 0;
     left: 0;

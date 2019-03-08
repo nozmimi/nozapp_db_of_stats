@@ -1,6 +1,6 @@
 function chart_bar(){
-  var ctx = document.getElementById("myBarChart");
-  var myBarChart = new Chart(ctx, {
+  var ctx = document.getElementById("gdp_bar_chart").getContext("2d");
+  var gdp_bar_chart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: gon.date_lavels,
