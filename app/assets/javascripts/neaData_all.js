@@ -5,8 +5,6 @@ function nea_data_all(date_unit,database,tableTitle,tableData){
     var stat = gon.db_stat;
     var data = database;
 
-    var text
-
     var colName = ["11","12","13","14","15","16","17","18","19","20","21","22","23"];
 
     for( i=0; i<cat.length; i++){
@@ -18,7 +16,7 @@ function nea_data_all(date_unit,database,tableTitle,tableData){
                         tableTitle.appendChild(tHead);
             }
         }
-    };
+    }
 
 
     for(i=0; i<date.length; i++){

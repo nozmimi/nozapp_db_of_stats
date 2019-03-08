@@ -1,17 +1,22 @@
-function chart_bar(){
+function bar_gdp(){
+
+  var lavel = gon.date_lavels;
+  var r_data = gon.real_datas;
+  var n_data = gon.nominal_datas;
+  
   var ctx = document.getElementById("gdp_bar_chart").getContext("2d");
   var gdp_bar_chart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: gon.date_lavels,
+      labels: lavel,
       datasets: [
         {
-          label: '名目',
-          data: gon.nominal_datas,
+          label: '実質',
+          data: r_data,
           backgroundColor: "rgba(219,39,91,0.5)"
         },{
-          label: '実質',
-          data: gon.real_datas,
+          label: '名目',
+          data: n_data,
           backgroundColor: "rgba(130,201,169,0.5)"
         }
       ]

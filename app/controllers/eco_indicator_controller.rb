@@ -5,6 +5,9 @@ require_relative "./concerns/chart_bar_gdp"
 
   def index
     chart_bar_gdp
+    gon.date_lavels = @date_lavels
+    gon.real_datas = @real_datas
+    gon.nominal_datas = @nominal_datas
     
     scrape_gdp
     scrape_mhlw
